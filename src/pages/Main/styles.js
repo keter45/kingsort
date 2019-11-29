@@ -18,6 +18,10 @@ export const Container = styled.div`
       margin-right: 10px;
     }
   }
+  .validate {
+    margin-left: 15px;
+    color: #eb4034;
+  }
 `;
 
 export const Form = styled.div`
