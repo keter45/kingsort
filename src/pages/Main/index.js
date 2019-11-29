@@ -48,7 +48,7 @@ export default function Main() {
       },
     ];
 
-    // Translate roman to number to order the arry
+    // Translate roman to number to order the array
     kings.forEach(k => {
       king.Name = k.split(' ');
       king.Number = romanToNumber(king.Name[1]);
