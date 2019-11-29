@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FaPlus, FaCrown, FaMinus, FaSortAmountUp } from 'react-icons/fa';
 import { Container, Form, Button, List } from './styles';
-import romanToNumber from '../../Services/romanToNumber';
-import numberToRoman from '../../Services/numerToRoman';
+import SortKings from '../../Services/sortKings';
 
 export default function Main() {
   const [kings, setKing] = useState([]);
@@ -32,41 +31,8 @@ export default function Main() {
     setKing(kings.filter(k => k !== king));
   }
 
-  function capitalize(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
-
   function sortKings() {
-    let numericKings = [];
-    let orderKings = [];
-
-    const king = [
-      {
-        Name: [],
-        Number: '',
-        FullName: '',
-      },
-    ];
-
-    // Translate roman to number to order the array
-    kings.forEach(k => {
-      king.Name = k.split(' ');
-      king.Number = romanToNumber(king.Name[1]);
-      king.FullName = `${capitalize(king.Name[0])} ${king.Number}`;
-      numericKings = [...numericKings, king.FullName];
-    });
-
-    numericKings.sort();
-
-    // Getting roman numerics back
-    numericKings.forEach(k => {
-      king.Name = k.split(' ');
-      king.Number = numberToRoman(king.Name[1]);
-      king.FullName = `${king.Name[0]} ${king.Number}`;
-      orderKings = [...orderKings, king.FullName];
-    });
-
-    setKing(orderKings);
+    setKing(SortKings(kings));
   }
 
   useEffect(() => {
