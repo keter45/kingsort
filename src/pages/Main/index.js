@@ -74,6 +74,7 @@ export default function Main() {
         </Button>
       </Form>
       <p className="validate">{validate.msg}</p>
+
       <List>
         {kings.map(king => (
           <li key={king}>
@@ -84,10 +85,13 @@ export default function Main() {
           </li>
         ))}
       </List>
-      <Button className="order" onClick={sortKings}>
-        Sort
-        <FaSortAmountUp />
-      </Button>
+
+      <footer>
+        <Button className="order" onClick={sortKings}>
+          Sort
+          <FaSortAmountUp />
+        </Button>
+      </footer>
     </Container>
   );
 }

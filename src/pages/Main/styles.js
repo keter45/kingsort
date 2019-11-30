@@ -22,6 +22,9 @@ export const Container = styled.div`
     margin-left: 15px;
     color: #eb4034;
   }
+  footer {
+    display: flex;
+  }
 `;
 
 export const Form = styled.div`
@@ -62,10 +65,12 @@ export const Button = styled.button.attrs({
   }
   &.order {
     color: #fff;
-    font-size: 18px;
+    font-size: 22px;
     padding: 10px 15px;
+    width: 100%;
     svg {
-      margin-left: 10px;
+      margin-left: 5px;
+      font-size: 18px;
     }
   }
 `;

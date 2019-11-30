@@ -24,7 +24,7 @@ export default function romanToInt(str1) {
   let pre;
   let curr;
 
-  for (let i = 1; i < str1.length; i++) {
+  for (let i = 1; i < str1.length; i += 1) {
     curr = charToInt(str1.charAt(i));
     pre = charToInt(str1.charAt(i - 1));
     if (curr <= pre) {
@@ -33,6 +33,5 @@ export default function romanToInt(str1) {
       num = num - pre * 2 + curr;
     }
   }
-
   return num;
 }

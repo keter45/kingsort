@@ -1,56 +1,50 @@
 import romanToNumber from './romanToNumber';
-import numberToRoman from './numerToRoman';
 
 function numberCompare(a, b) {
-  if (
-    a
-      .split(' ')
-      .slice(0, -1)
-      .join() ===
-    b
-      .split(' ')
-      .slice(0, -1)
-      .join()
-  ) {
-    if (Number(a.substr(a.length - 2)) > Number(b.substr(b.length - 2))) {
+  if (a.name === b.name) {
+    if (Number(a.number) > Number(b.number)) {
       return 1;
     }
     return -1;
   }
   return a - b;
 }
+
 function capitalize(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
-export default function sortKings(kings) {
-  let numericKings = [];
-  let orderKings = [];
 
+export default function sortKings(kings) {
+  let kingsList = [];
   const king = [
     {
       Name: [],
       Number: '',
-      FullName: '',
     },
   ];
 
   // Translate roman to number to order the array
   kings.forEach(k => {
-    king.Name = k.split(' ');
+    king.Name = capitalize(k).split(' ');
     king.Number = romanToNumber(king.Name[1]);
-    king.FullName = `${capitalize(king.Name[0])} ${king.Number}`;
-    numericKings = [...numericKings, king.FullName];
+
+    kingsList = [
+      ...kingsList,
+      {
+        name: king.Name[0],
+        fullname: king.Name.join(' '),
+        number: king.Number,
+      },
+    ];
   });
 
-  numericKings.sort((a, b) => numberCompare(a, b));
+  kingsList.sort((a, b) => numberCompare(a, b));
 
-  // Getting roman numerics back
-  numericKings.forEach(k => {
-    king.Name = k.split(' ');
-    king.Number = numberToRoman(king.Name[1]);
-    king.FullName = `${king.Name[0]} ${king.Number}`;
-    orderKings = [...orderKings, king.FullName];
+  let namesList = [];
+
+  kingsList.forEach(k => {
+    namesList = [...namesList, k.fullname];
   });
 
-  return orderKings;
+  return namesList;
 }
